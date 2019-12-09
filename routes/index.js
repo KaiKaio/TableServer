@@ -1,4 +1,5 @@
 const { TableModel } = require('../models')
+const { CombinModel } = require('../models')
 
 module.exports =  (router) => {
   router.get('/', async function (ctx, next) {
@@ -47,6 +48,18 @@ module.exports =  (router) => {
     }
   })
 
+  // 请求组合键查询
+  router.post('/combination', async function(ctx, next) {
+    console.log(ctx.request.body.data, '传进来的数组')
+    let results = await CombinModel.find({'index': ctx.request.body.data})
+
+    ctx.body = {
+        code: 0,
+        msg: '查询组合键Success',
+        data: results
+      }
+  })
+
   // router.post('/111', async function (ctx, next) {
   //   // let Font = ''
   //   // for(let i = 10000; i < 20000; i++) {
@@ -74,13 +87,20 @@ module.exports =  (router) => {
   //     )
   //   }
 
+  // 增加字段
+    // await TableModel.update(
+    //   {},
+    //   {$set: {"self": [22, 33, 6666] }},
+    //   {
+    //     "multi" : true,
+    //   }
+    // )
 
-  //   ctx.body = {
-  //     code: 0,
-  //     msg: '添加成功',
-  //     // data: result
-  //   }
-
-
+    // ctx.body = {
+    //   code: 0,
+    //   msg: '添加字段成功',
+    //   // data: result
+    // }
   // })
+
 }

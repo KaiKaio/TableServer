@@ -21,14 +21,24 @@ mongoose.connection.on("open",  () => {
 });
 
 // 文档（对象）约束
+
+// 主表每个字符
 const TableSchema = new mongoose.Schema({
   font: { type: String, require: true },
   relation: { type: Array, required: true },
-  self: {type: Boolean, required: true },
-  index: {type: Number, required: false }
+  index: {type: Number, required: false },
+  self: {type: Array, required: false}
+})
+
+// 组合表的每个组合
+const CombinSchema = new mongoose.Schema({
+  index: { type: Array, require: true },
+  relation: { type: Array, required: false }
 })
 
 const TableModel = mongoose.model('tables', TableSchema)
+const CombinModel = mongoose.model('combinations', CombinSchema)
 
 exports.TableModel = TableModel
+exports.CombinModel = CombinModel
 
