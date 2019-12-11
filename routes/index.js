@@ -60,34 +60,40 @@ module.exports =  (router) => {
       }
   })
 
-  // router.post('/111', async function (ctx, next) {
-  //   // let Font = ''
-  //   // for(let i = 10000; i < 20000; i++) {
-  //   //   Font = new TableModel({
-  //   //     font: ctx.request.body.font,
-  //   //     relation: [1, 2],
-  //   //     self: true
-  //   //   })
-  //   //   Font.save()
-  //   // }
+  router.post('/111', async function (ctx, next) {
+    // let Font = ''
+    // for(let i = 0; i < 20000; i++) {
+    //   Font = new TableModel({
+    //     font: ctx.request.body.font,
+    //     relation: [
+    //       { index: 8765, to: 2221 },
+    //       { index: 94, to: 495 }
+    //     ],
+    //     self: [11, 222, 1111],
+    //     index: 0,
+    //     style: '',
+    //     link: ''
+    //   })
+    //   Font.save()
+    // }
 
-  //   // 修改 `Index` 值基础实例，记得去修改模型
-  //   // await TableModel.updateOne({_id: "5de1fd501d63737b7d472ba0"},{
-  //   //   $set: {
-  //   //     index: 0
-  //   //   }
-  //   // })
+    // // 修改 `Index` 值基础实例，记得去修改模型
+    // await TableModel.updateOne({_id: "5de1fd501d63737b7d472ba0"},{
+    //   $set: {
+    //     index: 0
+    //   }
+    // })
 
-  //   // 牛批的方法（破音！）
-  //   let result = await TableModel.find()
-  //   for(let i = 0; i < result.length; i++) {
-  //     await TableModel.update(
-  //       {"_id": result[i]._id},
-  //       {$set: {"index": i }}
-  //     )
-  //   }
+    // // 牛批的方法（破音！）
+    // let result = await TableModel.find()
+    // for(let i = 0; i < result.length; i++) {
+    //   await TableModel.update(
+    //     {"_id": result[i]._id},
+    //     {$set: {"index": i }}
+    //   )
+    // }
 
-  // 增加字段
+    // // 增加字段
     // await TableModel.update(
     //   {},
     //   {$set: {"self": [22, 33, 6666] }},
@@ -96,11 +102,29 @@ module.exports =  (router) => {
     //   }
     // )
 
+    // 增加样式字段
+    // await TableModel.update(
+    //   {},
+    //   {$set: {"style": '' }},
+    //   {
+    //     "multi" : true,
+    //   }
+    // )
+
+    // 增加链接字段
+    // await TableModel.update(
+    //   {},
+    //   {$set: {"link": '' }},
+    //   {
+    //     "multi" : true,
+    //   }
+    // )
+
     // ctx.body = {
     //   code: 0,
-    //   msg: '添加字段成功',
-    //   // data: result
+    //   msg: '添加链接字段成功'
     // }
-  // })
+
+  })
 
 }

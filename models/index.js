@@ -27,7 +27,9 @@ const TableSchema = new mongoose.Schema({
   font: { type: String, require: true },
   relation: { type: Array, required: true },
   index: {type: Number, required: false },
-  self: {type: Array, required: false}
+  self: {type: Array, required: false},
+  style: { type: String, required: false},
+  link: { type: String, required: false}
 })
 
 // 组合表的每个组合
