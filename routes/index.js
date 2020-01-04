@@ -1,5 +1,7 @@
 const { TableModel } = require('../models')
 const { CombinModel } = require('../models')
+const { MTableModel } = require('../models')
+const { MCombinModel } = require('../models')
 
 module.exports =  (router) => {
   router.get('/', async function (ctx, next) {
@@ -29,13 +31,33 @@ module.exports =  (router) => {
     }
   })
 
-  router.get('/tableData', async function (ctx, next) {
+  router.get('/tableData', async function (ctx, next) { // PC路由
     // 总数组
     let results = []
     // 用于For循环的数组
     let resultsFor = []
     for(let i = 0; i < 72; i++) {
       resultsFor = await TableModel.find().limit(129).skip(129 * i)
+      results.push(resultsFor)
+    }
+
+    let code = 0;
+    let msg = '查询成功啦~'
+    ctx.body = {
+      code: code,
+      msg: msg,
+      data: results
+    }
+  })
+
+  // 手机路由
+  router.get('/tableDataMobile', async function (ctx, next) {
+    // 总数组
+    let results = []
+    // 用于For循环的数组
+    let resultsFor = []
+    for(let i = 0; i < 24; i++) {
+      resultsFor = await MTableModel.find().limit(45).skip(45 * i)
       results.push(resultsFor)
     }
 
@@ -60,16 +82,28 @@ module.exports =  (router) => {
       }
   })
 
+  // 请求组合键查询（手机）
+  router.post('/mcombination', async function(ctx, next) {
+    console.log(ctx.request.body.data, '传进来的数组')
+    let results = await MCombinModel.find({'index': ctx.request.body.data})
+
+    ctx.body = {
+        code: 0,
+        msg: '查询组合键Success',
+        data: results
+      }
+  })
+
   router.post('/111', async function (ctx, next) {
     // let Font = ''
-    // for(let i = 0; i < 20000; i++) {
-    //   Font = new TableModel({
+    // for(let i = 0; i < 1215; i++) {
+    //   Font = new MTableModel({
     //     font: ctx.request.body.font,
     //     relation: [
-    //       { index: 8765, to: 2221 },
-    //       { index: 94, to: 495 }
+    //       { index: 5, to: 66 },
+    //       { index: 233, to: 495 }
     //     ],
-    //     self: [11, 222, 1111],
+    //     self: [11, 222, 999],
     //     index: 0,
     //     style: '',
     //     link: ''
@@ -85,9 +119,9 @@ module.exports =  (router) => {
     // })
 
     // // 牛批的方法（破音！）
-    // let result = await TableModel.find()
+    // let result = await MTableModel.find()
     // for(let i = 0; i < result.length; i++) {
-    //   await TableModel.update(
+    //   await MTableModel.update(
     //     {"_id": result[i]._id},
     //     {$set: {"index": i }}
     //   )
@@ -120,10 +154,10 @@ module.exports =  (router) => {
     //   }
     // )
 
-    // ctx.body = {
-    //   code: 0,
-    //   msg: '添加链接字段成功'
-    // }
+    ctx.body = {
+      code: 0,
+      msg: '添加链接字段成功'
+    }
 
   })
 

@@ -32,15 +32,39 @@ const TableSchema = new mongoose.Schema({
   link: { type: String, required: false}
 })
 
+// 手机表
+const MTableSchema = new mongoose.Schema({
+  font: { type: String, require: true },
+  relation: { type: Array, required: true },
+  index: {type: Number, required: false },
+  self: {type: Array, required: false},
+  style: { type: String, required: false},
+  link: { type: String, required: false},
+  change: { type: Array, required: false }
+})
+
 // 组合表的每个组合
 const CombinSchema = new mongoose.Schema({
   index: { type: Array, require: true },
-  relation: { type: Array, required: false }
+  relation: { type: Array, required: false },
+  change: { type: Array, required: false }
 })
+
+const MCombinSchema = new mongoose.Schema({
+  index: { type: Array, require: true },
+  relation: { type: Array, required: false },
+  change: { type: Array, required: false },
+  img: {type: String, required: false}
+})
+
 
 const TableModel = mongoose.model('tables', TableSchema)
 const CombinModel = mongoose.model('combinations', CombinSchema)
+const MTableModel = mongoose.model('mtables', MTableSchema)
+const MCombinModel = mongoose.model('mcombinations', MCombinSchema)
 
 exports.TableModel = TableModel
 exports.CombinModel = CombinModel
+exports.MTableModel = MTableModel
+exports.MCombinModel = MCombinModel
 
